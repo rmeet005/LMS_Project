@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
 using LMS_Project.Data;
+using LMS_Project.DTO;
+using LMS_Project.Models;
+using LMS_Project.Repository;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace LMS_Project.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         ApplicationDbContext db;
         IMapper mapper;
@@ -12,11 +16,17 @@ namespace LMS_Project.Services
             this.db = db;
             this.mapper = mapper;
         }
-        public void AddUser(Models.Users user)
+        public void AddUser(UserDto user)
         {
-            mapper.Map<Models.Users>(user);
-            db.Users.Add(user);
+            var d = mapper.Map<Users>(user);
+            db.Users.Add(d);
             db.SaveChanges();
         }
+
+        public List<Users> FetchAllUsers()
+        {
+            return db.Users.ToList();
+        }
+
     }
 }

@@ -1,5 +1,7 @@
 using LMS_Project.Data;
 using LMS_Project.Mapper;
+using LMS_Project.Repository;
+using LMS_Project.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +19,25 @@ builder.Services.AddDbContext<ApplicationDbContext>
         builder.Configuration.GetConnectionString("dbconn")
     )
     );
+
 builder.Services.AddAutoMapper(typeof(MappingData));
+builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddScoped<IUserRolesService, UserRoleService>();
+builder.Services.AddScoped<IRolesService, RolesService>();
+builder.Services.AddScoped<ICountriesService, CountriesService>();
+builder.Services.AddScoped<IStatesService, StatesService>();
+builder.Services.AddScoped<ICitiesService, CitiesService>();
+builder.Services.AddScoped<IPincodesService, PincodesService>();
+builder.Services.AddScoped<IRejectionReasonService, RejectionReasonService>();
+builder.Services.AddScoped<IEmploymentTypeService, EmploymentTypeService>();
+builder.Services.AddScoped<IBankService, BankService>();
+builder.Services.AddScoped<IOccupationTypeService, OccupationTypeService>();
+builder.Services.AddScoped<IDocumentTypeService, DocumentTypeService>();
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+builder.Services.AddScoped<IBranchService, BranchService>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

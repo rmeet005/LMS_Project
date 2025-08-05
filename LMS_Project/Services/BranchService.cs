@@ -1,6 +1,30 @@
-﻿namespace LMS_Project.Services
+﻿using AutoMapper;
+using LMS_Project.Data;
+using LMS_Project.DTO;
+using LMS_Project.Models;
+using LMS_Project.Repository;
+
+namespace LMS_Project.Services
 {
-    public class BranchService
+    public class BranchService : IBranchService
     {
+        ApplicationDbContext db;
+        IMapper mapper;
+        public BranchService(ApplicationDbContext db, IMapper mapper)
+        {
+            this.db = db;
+            this.mapper = mapper;
+        }
+        public void AddBranch(BranchDto branchDto)
+        {
+            var branch = mapper.Map<Branch>(branchDto);
+            db.Branches.Add(branch);
+            db.SaveChanges();
+        }
+        public List<BranchDto> FetchAllBranches()
+        {
+            var data = db.Branches.ToList();
+            return mapper.Map<List<BranchDto>>(data);
+        }
     }
 }

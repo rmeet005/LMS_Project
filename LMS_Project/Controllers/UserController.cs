@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using LMS_Project.DTO;
+using LMS_Project.Models;
+using LMS_Project.Repository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LMS_Project.Controllers
@@ -7,5 +10,27 @@ namespace LMS_Project.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        IUserService Service;
+        public UserController(IUserService service)
+        {
+            Service = service;
+        }
+
+        [HttpPost]
+        [Route("AddUser")]
+        public IActionResult AddUser(UserDto u)
+        {
+            Service.AddUser(u);
+            return Ok("User added successfully");
+
+        }
+
+        [HttpGet]
+        [Route("FetchAllUsers")]
+        public IActionResult FetchAllUsers()
+        {
+           var data= Service.FetchAllUsers();
+            return Ok(data);
+        }
     }
 }

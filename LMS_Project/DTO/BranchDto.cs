@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace LMS_Project.Models
+﻿namespace LMS_Project.DTO
 {
-    public class Branch
+    public class BranchDto
     {
-        [Key]
         public int BranchId { get; set; }
         public string BranchCode { get; set; }
         public string BranchName { get; set; }
