@@ -9,7 +9,7 @@ namespace LMS_Project.Models
         public string TypeCode { get; set; }
         public string TypeName { get; set; }
         public string? Description { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }

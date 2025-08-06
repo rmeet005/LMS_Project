@@ -10,7 +10,7 @@ namespace LMS_Project.Models
         public string? UserName { get; set; }
         public String? Email { get; set; }
         public string? PasswordHash { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
 
         public List<UserRoles>userroles{ get; set; } 

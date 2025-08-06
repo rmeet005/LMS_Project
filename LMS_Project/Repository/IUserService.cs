@@ -7,5 +7,6 @@ namespace LMS_Project.Repository
     {
         void AddUser(UserDto user);
         public List<Users> FetchAllUsers();
+        public void UpdateUser(EditUserDto user);
     }
 }

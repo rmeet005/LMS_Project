@@ -9,6 +9,7 @@ namespace LMS_Project.Mapper
         public MappingData()
         {
             CreateMap<Users, UserDto>().ReverseMap();
+            CreateMap<Users, EditUserDto>().ReverseMap();
             CreateMap<UserRoles, UserRoleDto>().ReverseMap();
             CreateMap<Roles,RolesDto>().ReverseMap();
             CreateMap<Countries, CountryDto>().ReverseMap();
@@ -22,6 +23,7 @@ namespace LMS_Project.Mapper
             CreateMap<DocumentType, DocumentTypeDto>().ReverseMap();
             CreateMap<Department,DepartmentDto>().ReverseMap();
             CreateMap<Branch,BranchDto>().ReverseMap();
+
         }
     }
 

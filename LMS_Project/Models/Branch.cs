@@ -14,7 +14,7 @@ namespace LMS_Project.Models
         public string? Country { get; set; }
         public string? Phone { get; set; }
         public string? Email { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }

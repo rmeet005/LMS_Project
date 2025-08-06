@@ -27,6 +27,12 @@ namespace LMS_Project.Services
         {
             return db.Users.ToList();
         }
+        public void UpdateUser(EditUserDto user)
+        {
+            var d=mapper.Map<Users>(user);
+            db.Users.Update(d);
+            db.SaveChanges();
+        }
 
     }
 }

@@ -32,5 +32,12 @@ namespace LMS_Project.Controllers
            var data= Service.FetchAllUsers();
             return Ok(data);
         }
+        [HttpPut]
+        [Route("EditEmp")]
+        public IActionResult EditEmp(EditUserDto u)
+        {
+            Service.UpdateUser(u);
+            return Ok(new { message = "Emp updated" });
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace LMS_Project.Models
         public string? IFSCCode { get; set; }
         public string? BranchName { get; set; }
         public string? Address { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }
