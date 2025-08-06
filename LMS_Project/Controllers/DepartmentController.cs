@@ -28,5 +28,19 @@ namespace LMS_Project.Controllers
             var data = service.FetchAllDepartments();
             return Ok(data);
         }
+        [HttpPut]
+        [Route("UpdateDepartment")]
+        public IActionResult UpdateDepartment([FromBody] EditDepartmentDto departmentDto)
+        {
+            service.UpdateDepartment(departmentDto);
+            return Ok("Department updated successfully.");
+        }
+        [HttpDelete]
+        [Route("DeleteDepartment/{departmentId}")]
+        public IActionResult DeleteDepartment(int departmentId)
+        {
+            service.DeleteDepartment(departmentId);
+            return Ok("Department deleted successfully.");
+        }
     }
 }

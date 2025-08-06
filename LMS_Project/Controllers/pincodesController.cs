@@ -28,6 +28,20 @@ namespace LMS_Project.Controllers
             var data = Service.FetchAllPincodes();
             return Ok(data);
         }
+        [HttpPut]
+        [Route("UpdatePincode")]
+        public IActionResult UpdatePincode([FromBody] EditPincodesDto pincode)
+        {
+            Service.UpdatePincode(pincode);
+            return Ok("Pincode updated successfully");
+        }
+        [HttpDelete]
+        [Route("DeletePincode/{pincodeId}")]
+        public IActionResult DeletePincode(int pincodeId)
+        {
+            Service.DeletePincode(pincodeId);
+            return Ok("Pincode deleted successfully");
+        }
     }
 }
 

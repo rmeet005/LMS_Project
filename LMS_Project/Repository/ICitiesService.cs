@@ -6,6 +6,9 @@ namespace LMS_Project.Repository
     {
         public void AddCity(CitiesDto city);
         public List<CitiesDto> FetchAllCities();
+        public void UpdateCity(CitiesDto city);
+        public void DeleteCity(int cityId);
+
 
     }
 }

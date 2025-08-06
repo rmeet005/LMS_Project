@@ -6,5 +6,7 @@ namespace LMS_Project.Repository
     {
         public void AddBank(BankDto bank);
         public List<BankDto> FetchAllBanks();
+        public void UpdateBank(EditBankDto bank);
+        public void DeleteBank(int bankId);
     }
 }

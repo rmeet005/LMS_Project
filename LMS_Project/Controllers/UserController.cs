@@ -29,7 +29,7 @@ namespace LMS_Project.Controllers
         [Route("FetchAllUsers")]
         public IActionResult FetchAllUsers()
         {
-           var data= Service.FetchAllUsers();
+            var data = Service.FetchAllUsers();
             return Ok(data);
         }
         [HttpPut]
@@ -38,6 +38,24 @@ namespace LMS_Project.Controllers
         {
             Service.UpdateUser(u);
             return Ok(new { message = "Emp updated" });
+        }
+        [HttpDelete]
+        [Route("DeleteEmp/{uid}")]
+        public IActionResult DeleteEmp(int uid)
+        {
+            Service.DeleteUser(uid);
+            return Ok(new { message = "Emp deleted" });
+        }
+        [HttpGet]
+        [Route("FindUserById/{uid}")]
+        public IActionResult FindUserById(int uid)
+        {
+            var user = Service.FetchAllUsers().FirstOrDefault(u => u.Uid == uid);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+            return Ok(user);
         }
     }
 }

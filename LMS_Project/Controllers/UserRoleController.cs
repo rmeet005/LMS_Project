@@ -27,5 +27,19 @@ namespace LMS_Project.Controllers
             var data = Service.FetchAllUserRoles();
             return Ok(data);
         }
+        [HttpPut]
+        [Route("UpdateUserRole")]
+        public IActionResult UpdateUserRole([FromBody] DTO.UserRoleDto userRole)
+        {
+            Service.UpdateUserRole(userRole);
+            return Ok("User role updated successfully");
+        }
+        [HttpDelete]
+        [Route("DeleteUserRole/{userRoleId}")]
+        public IActionResult DeleteUserRole(int userRoleId)
+        {
+            Service.DeleteUserRole(userRoleId);
+            return Ok("User role deleted successfully");
+        }
     }
 }

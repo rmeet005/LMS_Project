@@ -21,8 +21,8 @@ namespace LMS_Project.Models
         [ForeignKey("Countries")]
         public int CountryId { get; set; }
         public Countries Countries { get; set; }
-        public bool IsActive { get; set; }
-        public DateTime CreatedAt { get; set; } 
-        public DateTime UpdatedAt { get; set; }
+        public bool IsActive { get; set; }=true;
+        public DateTime CreatedAt { get; set; }= DateTime.Now; 
+        public DateTime UpdatedAt { get; set; }= DateTime.Now;
     }
 }

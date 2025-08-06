@@ -28,6 +28,20 @@ namespace LMS_Project.Controllers
             var data = Service.FetchAllCountries();
             return Ok(data);
         }
+        [HttpPut]
+        [Route("UpdateCountry")]
+        public IActionResult UpdateCountry([FromBody] CountryDto country)
+        {
+            Service.UpdateCountry(country);
+            return Ok("Country updated successfully");
+        }
+        [HttpDelete]
+        [Route("DeleteCountry/{countryId}")]
+        public IActionResult DeleteCountry(int countryId)
+        {
+            Service.DeleteCountry(countryId);
+            return Ok("Country deleted successfully");
+        }
     }
 }
 

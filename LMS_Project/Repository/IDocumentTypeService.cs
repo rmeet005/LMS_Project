@@ -6,5 +6,7 @@ namespace LMS_Project.Repository
     {
         public void AddDocumentType(DocumentTypeDto documentTypeDto);
         public List<DocumentTypeDto> FetchAllDocumentTypes();
+        public void UpdateDocumentType(EditDocumentTypeDto documentTypeDto);
+        public void DeleteDocumentType(int documentTypeId);
     }
 }

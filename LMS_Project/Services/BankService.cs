@@ -25,5 +25,20 @@ namespace LMS_Project.Services
             var data = db.Banks.ToList();
             return mapper.Map<List<BankDto>>(data);
         }
+        public void UpdateBank(EditBankDto bank)
+        {
+            var data = mapper.Map<Models.Bank>(bank);
+            db.Banks.Update(data);
+            db.SaveChanges();
+        }
+        public void DeleteBank(int bankId)
+        {
+            var bank = db.Banks.Find(bankId);
+            if (bank != null)
+            {
+                db.Banks.Remove(bank);
+                db.SaveChanges();
+            }
+        }
     }
 }

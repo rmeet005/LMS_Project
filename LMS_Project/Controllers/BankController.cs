@@ -25,5 +25,20 @@ namespace LMS_Project.Controllers
             var banks = service.FetchAllBanks();
             return Ok(banks);
         }
+        [HttpPut]
+        [Route("UpdateBank")]
+        public IActionResult UpdateBank([FromBody] DTO.EditBankDto bank)
+        {
+            service.UpdateBank(bank);
+            return Ok("Bank updated successfully.");
+        }
+        [HttpDelete]
+        [Route("DeleteBank/{bankId}")]
+        public IActionResult DeleteBank(int bankId)
+        {
+            service.DeleteBank(bankId);
+            return Ok("Bank deleted successfully.");
+        }
+
     }
 }

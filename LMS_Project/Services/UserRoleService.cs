@@ -30,5 +30,20 @@ namespace LMS_Project.Services
             var data = db.UserRoles.ToList();
             return mapper.Map<List<UserRoleDto>>(data);
         }
+        public void UpdateUserRole(UserRoleDto userRole)
+        {
+            var d = mapper.Map<UserRoles>(userRole);
+            db.UserRoles.Update(d);
+            db.SaveChanges();
+        }
+        public void DeleteUserRole(int userRoleId)
+        {
+            var userRole = db.UserRoles.Find(userRoleId);
+            if (userRole != null)
+            {
+                db.UserRoles.Remove(userRole);
+                db.SaveChanges();
+            }
+        }
     }
 }

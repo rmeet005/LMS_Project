@@ -29,5 +29,19 @@ namespace LMS_Project.Controllers
             var data = Service.FetchAllCities();
             return Ok(data);
         }
+        [HttpPut]
+        [Route("UpdateCity")]
+        public IActionResult UpdateCity([FromBody] CitiesDto city)
+        {
+            Service.UpdateCity(city);
+            return Ok("City updated successfully");
+        }
+        [HttpDelete]
+        [Route("DeleteCity/{cityId}")]
+        public IActionResult DeleteCity(int cityId)
+        {
+            Service.DeleteCity(cityId);
+            return Ok("City deleted successfully");
+        }
     }
 }

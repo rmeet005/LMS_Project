@@ -1,8 +1,9 @@
-﻿using LMS_Project.Repository;
+﻿using LMS_Project.DTO;
+using LMS_Project.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LMS_Project.DTO
+namespace LMS_Project.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -26,6 +27,20 @@ namespace LMS_Project.DTO
         {
             var data = service.FetchAllEmploymentTypes();
             return Ok(data);
+        }
+        [HttpPut]
+        [Route("UpdateEmploymentType")]
+        public IActionResult UpdateEmploymentType([FromBody] EditEmploymentTypeDto employmentType)
+        {
+            service.UpdateEmploymentType(employmentType);
+            return Ok("Employment type updated successfully.");
+        }
+        [HttpDelete]
+        [Route("DeleteEmploymentType/{employmentTypeId}")]
+        public IActionResult DeleteEmploymentType(int employmentTypeId)
+        {
+            service.DeleteEmploymentType(employmentTypeId);
+            return Ok("Employment type deleted successfully.");
         }
     }
 }

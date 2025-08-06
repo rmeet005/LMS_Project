@@ -6,6 +6,8 @@ namespace LMS_Project.Repository
     {
         public void AddPincode(PinCodesDto pincode);
         public List<PinCodesDto> FetchAllPincodes();
+        public void UpdatePincode(EditPincodesDto pincode);
+        public void DeletePincode(int pincodeId);
 
     }
 }

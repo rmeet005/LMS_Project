@@ -23,5 +23,26 @@ namespace LMS_Project.Controllers
             Service.AddRole(roles);
             return Ok("Role Added Succefully!!");
         }
+        [HttpPost]
+        [Route("FetchAllRoles")]
+        public IActionResult FetchAllRoles()
+        {
+            var data = Service.FetchAllRoles();
+            return Ok(data);
+        }
+        [HttpPut]
+        [Route("UpdateRole")]
+        public IActionResult UpdateRole(RolesDto role)
+        {
+            Service.UpdateRole(role);
+            return Ok("Role Updated Succefully!!");
+        }
+        [HttpDelete]
+        [Route("DeleteRole/{RoleId}")]
+        public IActionResult DeleteRole(int RoleId)
+        {
+            Service.DeleteRole(RoleId);
+            return Ok("Role Deleted Succefully!!");
+        }
     }
 }

@@ -6,7 +6,7 @@ using LMS_Project.Repository;
 
 namespace LMS_Project.Services
 {
-    public class PincodesService: IPincodesService
+    public class PincodesService : IPincodesService
     {
         ApplicationDbContext db;
         IMapper mapper;
@@ -25,6 +25,22 @@ namespace LMS_Project.Services
         {
             var data = db.Pincodes.ToList();
             return mapper.Map<List<PinCodesDto>>(data);
+        }
+        public void UpdatePincode(EditPincodesDto pincode)
+        {
+            var data = mapper.Map<Pincodes>(pincode);
+            db.Pincodes.Update(data);
+            db.SaveChanges();
+        }
+        public void DeletePincode(int pincodeId)
+        {
+            var pincode = db.Pincodes.Find(pincodeId);
+            if (pincode != null)
+            {
+                db.Pincodes.Remove(pincode);
+                db.SaveChanges();
+            }
+
         }
     }
 }

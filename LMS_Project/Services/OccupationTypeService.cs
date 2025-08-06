@@ -26,5 +26,20 @@ namespace LMS_Project.Services
             var data = db.OccupationTypes.ToList();
             return mapper.Map<List<OccupationTypeDto>>(data);
         }
+        public void UpdateOccupationType(EditOccupationTypeDto occupationTypeDto)
+        {
+            var occupationType = mapper.Map<OccupationType>(occupationTypeDto);
+            db.OccupationTypes.Update(occupationType);
+            db.SaveChanges();
+        }
+        public void DeleteOccupationType(int occupationTypeId)
+        {
+            var occupationType = db.OccupationTypes.Find(occupationTypeId);
+            if (occupationType != null)
+            {
+                db.OccupationTypes.Remove(occupationType);
+                db.SaveChanges();
+            }
+        }
     }
 }

@@ -6,5 +6,7 @@ namespace LMS_Project.Repository
     {
         public void AddRejectionReason(RejectionReasonDto rejectionReason);
         public List<RejectionReasonDto> FetchAllRejectionReasons();
+        public void UpdateRejectionReason(EditRejectionReasonDto rejectionReason);
+        public void DeleteRejectionReason(int rejectionReasonId);
     }
 }

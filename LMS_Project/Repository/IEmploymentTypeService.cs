@@ -6,5 +6,7 @@ namespace LMS_Project.Repository
     {
         public void AddEmploymentType(EmploymentTypeDto employmentType);
         public List<EmploymentTypeDto> FetchAllEmploymentTypes();
+        public void UpdateEmploymentType(EditEmploymentTypeDto employmentType);
+        public void DeleteEmploymentType(int employmentTypeId);
     }
 }

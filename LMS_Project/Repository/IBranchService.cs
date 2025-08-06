@@ -6,5 +6,8 @@ namespace LMS_Project.Repository
     {
         public void AddBranch(BranchDto branchDto);
         public List<BranchDto> FetchAllBranches();
+        public void UpdateBranch(EditBranchDto branchDto);
+        public void DeleteBranch(int BranchId);
+        
     }
 }

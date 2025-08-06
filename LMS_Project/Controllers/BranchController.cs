@@ -28,6 +28,20 @@ namespace LMS_Project.Controllers
             var data = service.FetchAllBranches();
             return Ok(data);
         }
+        [HttpPut]
+        [Route("UpdateBranch")]
+        public IActionResult UpdateBranch([FromBody] EditBranchDto branchDto)
+        {
+            service.UpdateBranch(branchDto);
+            return Ok("Branch updated successfully.");
+        }
+        [HttpDelete]
+        [Route("DeleteBranch/{branchId}")]
+        public IActionResult DeleteBranch(int branchId)
+        {
+            service.DeleteBranch(branchId);
+            return Ok("Branch deleted successfully.");
+        }
     }
 }
 

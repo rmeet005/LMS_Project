@@ -26,5 +26,20 @@ namespace LMS_Project.Services
             var data = db.Cities.ToList();
             return mapper.Map<List<CitiesDto>>(data);
         }
+        public void UpdateCity(CitiesDto city)
+        {
+            var data = mapper.Map<Cities>(city);
+            db.Cities.Update(data);
+            db.SaveChanges();
+        }
+        public void DeleteCity(int cityId)
+        {
+            var city = db.Cities.Find(cityId);
+            if (city != null)
+            {
+                db.Cities.Remove(city);
+                db.SaveChanges();
+            }
+        }
     }
 }

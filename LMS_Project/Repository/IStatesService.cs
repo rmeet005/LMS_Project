@@ -6,5 +6,7 @@ namespace LMS_Project.Repository
     {
         public void AddState(StatesDto state);
         public List<StatesDto> FetchAllStates();
+        public void UpdateState(StatesDto state);
+        public void DeleteState(int StateId);
     }
 }

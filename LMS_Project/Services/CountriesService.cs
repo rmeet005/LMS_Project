@@ -26,5 +26,20 @@ namespace LMS_Project.Services
             var data = db.Countries.ToList();
             return mapper.Map<List<CountryDto>>(data);
         }
-    }
+        public void UpdateCountry(CountryDto country)
+        {
+            var data = mapper.Map<Countries>(country);
+            db.Countries.Update(data);
+            db.SaveChanges();
+        }
+        public void DeleteCountry(int countryId)
+        {
+            var country = db.Countries.Find(countryId);
+            if (country != null)
+            {
+                db.Countries.Remove(country);
+                db.SaveChanges();
+            }
+        }
+        }
 }

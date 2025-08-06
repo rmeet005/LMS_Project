@@ -27,5 +27,20 @@ namespace LMS_Project.Services
             return mapper.Map<List<DepartmentDto>>(data);
 
         }
+        public void UpdateDepartment(EditDepartmentDto departmentDto)
+        {
+            var department = mapper.Map<Department>(departmentDto);
+            db.Departments.Update(department);
+            db.SaveChanges();
+        }
+        public void DeleteDepartment(int departmentId)
+        {
+            var department = db.Departments.Find(departmentId);
+            if (department != null)
+            {
+                db.Departments.Remove(department);
+                db.SaveChanges();
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace LMS_Project.Services
     {
         ApplicationDbContext db;
         IMapper mapper;
-    
+
         public RolesService(ApplicationDbContext db, IMapper mapper)
         {
             this.db = db;
@@ -19,10 +19,29 @@ namespace LMS_Project.Services
 
         public void AddRole(RolesDto roles)
         {
-            var data=mapper.Map<Roles>(roles);
+            var data = mapper.Map<Roles>(roles);
             db.Roles.Add(data);
             db.SaveChanges();
         }
+        public List<Roles> FetchAllRoles()
+        {
+            return db.Roles.ToList();
 
-    } 
+        }
+        public void UpdateRole(RolesDto role)
+        {
+            var d = mapper.Map<Roles>(role);
+            db.Roles.Update(d);
+            db.SaveChanges();
+        }
+        public void DeleteRole(int RoleId)
+        {
+            var role = db.Roles.Find(RoleId);
+            if (role != null)
+            {
+                db.Roles.Remove(role);
+                db.SaveChanges();
+            }
+        }
+    }
 }

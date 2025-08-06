@@ -6,7 +6,7 @@ using LMS_Project.Repository;
 
 namespace LMS_Project.Services
 {
-    public class EmploymentTypeService: IEmploymentTypeService
+    public class EmploymentTypeService : IEmploymentTypeService
     {
         ApplicationDbContext db;
         IMapper mapper;
@@ -25,6 +25,21 @@ namespace LMS_Project.Services
         {
             var data = db.EmploymentTypes.ToList();
             return mapper.Map<List<EmploymentTypeDto>>(data);
+        }
+        public void UpdateEmploymentType(EditEmploymentTypeDto employmentType)
+        {
+            var data = mapper.Map<EmploymentType>(employmentType);
+            db.EmploymentTypes.Update(data);
+            db.SaveChanges();
+        }
+        public void DeleteEmploymentType(int employmentTypeId)
+        {
+            var employmentType = db.EmploymentTypes.Find(employmentTypeId);
+            if (employmentType != null)
+            {
+                db.EmploymentTypes.Remove(employmentType);
+                db.SaveChanges();
+            }
         }
     }
 }

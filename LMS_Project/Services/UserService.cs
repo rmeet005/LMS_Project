@@ -33,6 +33,20 @@ namespace LMS_Project.Services
             db.Users.Update(d);
             db.SaveChanges();
         }
+        public void DeleteUser(int uid)
+        {
+            var user = db.Users.Find(uid);
+            if (user != null)
+            {
+                db.Users.Remove(user);
+                db.SaveChanges();
+            }
+        }
+        public void FindUserById(UserDto user)
+        {
+            var d = mapper.Map<Users>(user);
+            db.Users.Find(d.Uid);
+        }
 
     }
 }

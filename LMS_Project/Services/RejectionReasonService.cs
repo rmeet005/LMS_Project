@@ -10,7 +10,7 @@ namespace LMS_Project.Services
     {
         ApplicationDbContext db;
         IMapper mapper;
-    public RejectionReasonService(ApplicationDbContext db, IMapper mapper)
+        public RejectionReasonService(ApplicationDbContext db, IMapper mapper)
         {
             this.db = db;
             this.mapper = mapper;
@@ -25,6 +25,21 @@ namespace LMS_Project.Services
         {
             var data = db.RejectionReasons.ToList();
             return mapper.Map<List<RejectionReasonDto>>(data);
+        }
+        public void UpdateRejectionReason(EditRejectionReasonDto rejectionReason)
+        {
+            var data = mapper.Map<RejectionReason>(rejectionReason);
+            db.RejectionReasons.Update(data);
+            db.SaveChanges();
+        }
+        public void DeleteRejectionReason(int rejectionReasonId)
+        {
+            var rejectionReason = db.RejectionReasons.Find(rejectionReasonId);
+            if (rejectionReason != null)
+            {
+                db.RejectionReasons.Remove(rejectionReason);
+                db.SaveChanges();
+            }
         }
     }
 }

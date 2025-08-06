@@ -6,7 +6,7 @@ using LMS_Project.Repository;
 
 namespace LMS_Project.Services
 {
-    public class StatesService: IStatesService
+    public class StatesService : IStatesService
     {
         ApplicationDbContext db;
         IMapper mapper;
@@ -25,6 +25,21 @@ namespace LMS_Project.Services
         {
             var data = db.States.ToList();
             return mapper.Map<List<StatesDto>>(data);
+        }
+        public void UpdateState(StatesDto state)
+        {
+            var data = mapper.Map<States>(state);
+            db.States.Update(data);
+            db.SaveChanges();
+        }
+        public void DeleteState(int StateId)
+        {
+            var state = db.States.Find(StateId);
+            if (state != null)
+            {
+                db.States.Remove(state);
+                db.SaveChanges();
+            }
         }
     }
 }

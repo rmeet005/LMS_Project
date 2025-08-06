@@ -7,5 +7,7 @@ namespace LMS_Project.Repository
     {
         public void AddOccupationType(OccupationTypeDto occupationTypeDto);
         public List<OccupationTypeDto> FetchAllOccupationTypes();
+        public void UpdateOccupationType(EditOccupationTypeDto occupationTypeDto);
+        public void DeleteOccupationType(int occupationTypeId);
     }
 }

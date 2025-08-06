@@ -28,5 +28,19 @@ namespace LMS_Project.Controllers
             var data = service.FetchAllDocumentTypes();
             return Ok(data);
         }
+        [HttpPut]
+        [Route("UpdateDocumentType")]
+        public IActionResult UpdateDocumentType([FromBody] EditDocumentTypeDto documentTypeDto)
+        {
+            service.UpdateDocumentType(documentTypeDto);
+            return Ok("Document Type updated successfully.");
+        }
+        [HttpDelete]
+        [Route("DeleteDocumentType/{documentTypeId}")]
+        public IActionResult DeleteDocumentType(int documentTypeId)
+        {
+            service.DeleteDocumentType(documentTypeId);
+            return Ok("Document Type deleted successfully.");
+        }
     }
 }

@@ -27,5 +27,19 @@ namespace LMS_Project.Controllers
             var data = service.FetchAllRejectionReasons();
             return Ok(data);
         }
+        [HttpPut]
+        [Route("UpdateRejectionReason")]
+        public IActionResult UpdateRejectionReason([FromBody] DTO.EditRejectionReasonDto rejectionReason)
+        {
+            service.UpdateRejectionReason(rejectionReason);
+            return Ok("Rejection reason updated successfully");
+        }
+        [HttpDelete]
+        [Route("DeleteRejectionReason/{rejectionReasonId}")]
+        public IActionResult DeleteRejectionReason(int rejectionReasonId)
+        {
+            service.DeleteRejectionReason(rejectionReasonId);
+            return Ok("Rejection reason deleted successfully");
+        }
     }
 }

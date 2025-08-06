@@ -30,5 +30,19 @@ namespace LMS_Project.Controllers
             return Ok(data);
 
         }
+        [HttpPut]
+        [Route("UpdateOccupationType")]
+        public IActionResult UpdateOccupationType([FromBody] EditOccupationTypeDto occupationTypeDto)
+        {
+            service.UpdateOccupationType(occupationTypeDto);
+            return Ok("Occupation Type updated successfully.");
+        }
+        [HttpDelete]
+        [Route("DeleteOccupationType/{occupationTypeId}")]
+        public IActionResult DeleteOccupationType(int occupationTypeId)
+        {
+            service.DeleteOccupationType(occupationTypeId);
+            return Ok("Occupation Type deleted successfully.");
+        }
     }
 }

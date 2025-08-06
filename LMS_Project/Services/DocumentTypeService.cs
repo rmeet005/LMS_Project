@@ -27,5 +27,20 @@ namespace LMS_Project.Services
             return mapper.Map<List<DocumentTypeDto>>(data);
 
         }
+        public void UpdateDocumentType(EditDocumentTypeDto documentTypeDto)
+        {
+            var documentType = mapper.Map<DocumentType>(documentTypeDto);
+            db.DocumentTypes.Update(documentType);
+            db.SaveChanges();
+        }
+        public void DeleteDocumentType(int documentTypeId)
+        {
+            var documentType = db.DocumentTypes.Find(documentTypeId);
+            if (documentType != null)
+            {
+                db.DocumentTypes.Remove(documentType);
+                db.SaveChanges();
+            }
+        }
     }
 }

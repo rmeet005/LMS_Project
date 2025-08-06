@@ -26,5 +26,20 @@ namespace LMS_Project.Services
             var data = db.Branches.ToList();
             return mapper.Map<List<BranchDto>>(data);
         }
+        public void UpdateBranch(EditBranchDto branchDto)
+        {
+            var branch = mapper.Map<Branch>(branchDto);
+            db.Branches.Update(branch);
+            db.SaveChanges();
+        }
+        public void DeleteBranch(int branchId)
+        {
+            var branch = db.Branches.Find(branchId);
+            if (branch != null)
+            {
+                db.Branches.Remove(branch);
+                db.SaveChanges();
+            }
+        }
     }
 }

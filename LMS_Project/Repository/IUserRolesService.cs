@@ -6,5 +6,7 @@ namespace LMS_Project.Repository
     {
         public void AddUserRole(UserRoleDto userRole);
         public List<UserRoleDto> FetchAllUserRoles();
+        public void UpdateUserRole(UserRoleDto userRole);
+        public void DeleteUserRole(int userRoleId);
     }
 }
