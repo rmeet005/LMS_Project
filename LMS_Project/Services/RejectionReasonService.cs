@@ -23,7 +23,7 @@ namespace LMS_Project.Services
         }
         public List<RejectionReasonDto> FetchAllRejectionReasons()
         {
-            var data = db.RejectionReasons.ToList();
+            var data = db.RejectionReasons.Where(x=>x.IsDeleted==false).ToList();
             return mapper.Map<List<RejectionReasonDto>>(data);
         }
         public void UpdateRejectionReason(EditRejectionReasonDto rejectionReason)
@@ -37,7 +37,7 @@ namespace LMS_Project.Services
             var rejectionReason = db.RejectionReasons.Find(rejectionReasonId);
             if (rejectionReason != null)
             {
-                db.RejectionReasons.Remove(rejectionReason);
+                rejectionReason.IsDeleted = true;
                 db.SaveChanges();
             }
         }

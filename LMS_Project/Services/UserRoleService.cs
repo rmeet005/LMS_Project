@@ -27,7 +27,7 @@ namespace LMS_Project.Services
         }
         public List<UserRoleDto> FetchAllUserRoles()
         {
-            var data = db.UserRoles.ToList();
+            var data = db.UserRoles.Where(x => x.IsDeleted == false).ToList();
             return mapper.Map<List<UserRoleDto>>(data);
         }
         public void UpdateUserRole(UserRoleDto userRole)
@@ -41,7 +41,7 @@ namespace LMS_Project.Services
             var userRole = db.UserRoles.Find(userRoleId);
             if (userRole != null)
             {
-                db.UserRoles.Remove(userRole);
+                userRole.IsDeleted = true;
                 db.SaveChanges();
             }
         }

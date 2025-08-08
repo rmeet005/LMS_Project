@@ -3,6 +3,7 @@ using LMS_Project.Data;
 using LMS_Project.DTO;
 using LMS_Project.Models;
 using LMS_Project.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace LMS_Project.Services
 {
@@ -21,10 +22,10 @@ namespace LMS_Project.Services
             db.Pincodes.Add(data);
             db.SaveChanges();
         }
-        public List<PinCodesDto> FetchAllPincodes()
+        public List<GetPincodesDTO> FetchAllPincodes()
         {
-            var data = db.Pincodes.ToList();
-            return mapper.Map<List<PinCodesDto>>(data);
+            var data = db.Pincodes.Where(p=>p.IsDeleted==false).Include(x=>x.Cities).Include(z=>z.States).Include(y=>y.Countries).ToList();
+            return mapper.Map<List<GetPincodesDTO>>(data);
         }
         public void UpdatePincode(EditPincodesDto pincode)
         {
@@ -37,7 +38,7 @@ namespace LMS_Project.Services
             var pincode = db.Pincodes.Find(pincodeId);
             if (pincode != null)
             {
-                db.Pincodes.Remove(pincode);
+                pincode.IsDeleted = true;
                 db.SaveChanges();
             }
 

@@ -16,7 +16,8 @@ namespace LMS_Project.Models
         public int RoleId { get; set; }
         public Roles Roles { get; set; }
 
-        public DateTime AssignedAt { get; set; } 
+        public DateTime AssignedAt { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
     }
 }

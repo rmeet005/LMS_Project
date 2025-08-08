@@ -23,7 +23,7 @@ namespace LMS_Project.Services
         }
         public List<CountryDto> FetchAllCountries()
         {
-            var data = db.Countries.ToList();
+            var data = db.Countries.Where(x=>x.IsDeleted==false).ToList();
             return mapper.Map<List<CountryDto>>(data);
         }
         public void UpdateCountry(CountryDto country)
@@ -37,9 +37,10 @@ namespace LMS_Project.Services
             var country = db.Countries.Find(countryId);
             if (country != null)
             {
-                db.Countries.Remove(country);
+               country.IsDeleted = true;
                 db.SaveChanges();
             }
         }
+
         }
 }

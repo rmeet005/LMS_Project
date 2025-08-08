@@ -25,7 +25,8 @@ namespace LMS_Project.Services
 
         public List<Users> FetchAllUsers()
         {
-            return db.Users.ToList();
+            var data = db.Users.Where(x=>x.IsDeleted==false&& x.IsActive==true).ToList();
+            return data;
         }
         public void UpdateUser(EditUserDto user)
         {
@@ -38,7 +39,7 @@ namespace LMS_Project.Services
             var user = db.Users.Find(uid);
             if (user != null)
             {
-                db.Users.Remove(user);
+                user.IsDeleted = true;
                 db.SaveChanges();
             }
         }

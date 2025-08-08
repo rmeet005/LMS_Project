@@ -13,6 +13,8 @@ namespace LMS_Project.Models
         public int StateId { get; set; }
         public States States { get; set; }
         public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; } = false;
         public List<Pincodes> Pincodes { get; set; }
+        public List<Branch> Branches { get; set; }
     }
 }

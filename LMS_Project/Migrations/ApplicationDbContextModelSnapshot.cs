@@ -53,6 +53,9 @@ namespace LMS_Project.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -80,11 +83,11 @@ namespace LMS_Project.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -95,16 +98,25 @@ namespace LMS_Project.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("StateId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("BranchId");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("StateId");
 
                     b.ToTable("Branches");
                 });
@@ -122,6 +134,9 @@ namespace LMS_Project.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<int>("StateId")
@@ -183,6 +198,9 @@ namespace LMS_Project.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -216,6 +234,9 @@ namespace LMS_Project.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("LastUpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -239,6 +260,9 @@ namespace LMS_Project.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("TypeCode")
@@ -272,6 +296,9 @@ namespace LMS_Project.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("OccupationCode")
@@ -313,6 +340,9 @@ namespace LMS_Project.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Pincode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -351,6 +381,9 @@ namespace LMS_Project.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ReasonCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -382,6 +415,9 @@ namespace LMS_Project.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("RoleName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -405,6 +441,9 @@ namespace LMS_Project.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("StateName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -426,6 +465,9 @@ namespace LMS_Project.Migrations
 
                     b.Property<DateTime>("AssignedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
@@ -459,6 +501,9 @@ namespace LMS_Project.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -468,6 +513,33 @@ namespace LMS_Project.Migrations
                     b.HasKey("Uid");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("LMS_Project.Models.Branch", b =>
+                {
+                    b.HasOne("LMS_Project.Models.Cities", "Cities")
+                        .WithMany("Branches")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("LMS_Project.Models.Countries", "Countries")
+                        .WithMany("Branches")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("LMS_Project.Models.States", "States")
+                        .WithMany("Branches")
+                        .HasForeignKey("StateId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Cities");
+
+                    b.Navigation("Countries");
+
+                    b.Navigation("States");
                 });
 
             modelBuilder.Entity("LMS_Project.Models.Cities", b =>
@@ -540,11 +612,15 @@ namespace LMS_Project.Migrations
 
             modelBuilder.Entity("LMS_Project.Models.Cities", b =>
                 {
+                    b.Navigation("Branches");
+
                     b.Navigation("Pincodes");
                 });
 
             modelBuilder.Entity("LMS_Project.Models.Countries", b =>
                 {
+                    b.Navigation("Branches");
+
                     b.Navigation("Pincodes");
 
                     b.Navigation("States");
@@ -557,6 +633,8 @@ namespace LMS_Project.Migrations
 
             modelBuilder.Entity("LMS_Project.Models.States", b =>
                 {
+                    b.Navigation("Branches");
+
                     b.Navigation("Cities");
 
                     b.Navigation("Pincodes");

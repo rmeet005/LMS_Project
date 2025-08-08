@@ -3,6 +3,7 @@ using LMS_Project.Data;
 using LMS_Project.DTO;
 using LMS_Project.Models;
 using LMS_Project.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace LMS_Project.Services
 {
@@ -21,10 +22,10 @@ namespace LMS_Project.Services
             db.Cities.Add(data);
             db.SaveChanges();
         }
-        public List<CitiesDto> FetchAllCities()
+        public List<GetCitiesDTO> FetchAllCities()
         {
-            var data = db.Cities.ToList();
-            return mapper.Map<List<CitiesDto>>(data);
+            var data = db.Cities.Where(x=>x.IsDeleted==false).Include(x=>x.States).ToList();
+            return mapper.Map<List<GetCitiesDTO>>(data);
         }
         public void UpdateCity(CitiesDto city)
         {
@@ -37,7 +38,7 @@ namespace LMS_Project.Services
             var city = db.Cities.Find(cityId);
             if (city != null)
             {
-                db.Cities.Remove(city);
+                city.IsDeleted = true;
                 db.SaveChanges();
             }
         }

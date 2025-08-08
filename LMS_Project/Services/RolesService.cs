@@ -25,7 +25,8 @@ namespace LMS_Project.Services
         }
         public List<Roles> FetchAllRoles()
         {
-            return db.Roles.ToList();
+            var data= db.Roles.Where(x=>x.IsDeleted==false).ToList();
+            return data;
 
         }
         public void UpdateRole(RolesDto role)
@@ -39,7 +40,7 @@ namespace LMS_Project.Services
             var role = db.Roles.Find(RoleId);
             if (role != null)
             {
-                db.Roles.Remove(role);
+                role.IsDeleted = true;
                 db.SaveChanges();
             }
         }

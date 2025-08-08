@@ -72,6 +72,21 @@ namespace LMS_Project.Data
                 .HasForeignKey(x => x.CountryId)
                 .OnDelete(DeleteBehavior.Restrict);
             });
+            modelBuilder.Entity<Branch>(ent =>
+            {
+                ent.HasOne(x => x.Cities)
+                .WithMany(x => x.Branches)
+                .HasForeignKey(x => x.CityId)
+                .OnDelete(DeleteBehavior.Restrict);
+                ent.HasOne(x => x.States)
+                .WithMany(x => x.Branches)
+                .HasForeignKey(x => x.StateId)
+                .OnDelete(DeleteBehavior.Restrict);
+                ent.HasOne(x => x.Countries)
+                .WithMany(x => x.Branches)
+                .HasForeignKey(x => x.CountryId)
+                .OnDelete(DeleteBehavior.Restrict);
+            });
 
 
         }

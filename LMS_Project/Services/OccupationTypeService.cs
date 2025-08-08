@@ -23,7 +23,7 @@ namespace LMS_Project.Services
         }
         public List<DTO.OccupationTypeDto> FetchAllOccupationTypes()
         {
-            var data = db.OccupationTypes.ToList();
+            var data = db.OccupationTypes.Where(x=>x.IsDeleted==false).ToList();
             return mapper.Map<List<OccupationTypeDto>>(data);
         }
         public void UpdateOccupationType(EditOccupationTypeDto occupationTypeDto)
@@ -37,7 +37,7 @@ namespace LMS_Project.Services
             var occupationType = db.OccupationTypes.Find(occupationTypeId);
             if (occupationType != null)
             {
-                db.OccupationTypes.Remove(occupationType);
+               occupationType.IsDeleted = true;
                 db.SaveChanges();
             }
         }

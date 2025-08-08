@@ -23,7 +23,7 @@ namespace LMS_Project.Services
         }
         public List<DepartmentDto> FetchAllDepartments()
         {
-            var data = db.Departments.ToList();
+            var data = db.Departments.Where(x => x.IsDeleted == false).ToList();
             return mapper.Map<List<DepartmentDto>>(data);
 
         }
@@ -38,7 +38,7 @@ namespace LMS_Project.Services
             var department = db.Departments.Find(departmentId);
             if (department != null)
             {
-                db.Departments.Remove(department);
+                department.IsDeleted = true;
                 db.SaveChanges();
             }
         }

@@ -13,8 +13,10 @@ namespace LMS_Project.Models
         public int CountryId { get; set; }
         public Countries Countries { get; set; }
         public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public List<Cities> Cities { get; set; }
         public List<Pincodes> Pincodes { get; set; }
+        public List<Branch> Branches { get; set; }
     }
 }

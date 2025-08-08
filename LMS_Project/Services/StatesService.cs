@@ -3,6 +3,7 @@ using LMS_Project.Data;
 using LMS_Project.DTO;
 using LMS_Project.Models;
 using LMS_Project.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace LMS_Project.Services
 {
@@ -21,10 +22,10 @@ namespace LMS_Project.Services
             db.States.Add(data);
             db.SaveChanges();
         }
-        public List<StatesDto> FetchAllStates()
+        public List<GetStatesDTO> FetchAllStates()
         {
-            var data = db.States.ToList();
-            return mapper.Map<List<StatesDto>>(data);
+            var data = db.States.Where(x=>x.IsDeleted==false).Include(x=>x.Countries).ToList();
+            return mapper.Map<List<GetStatesDTO>>(data);
         }
         public void UpdateState(StatesDto state)
         {
@@ -37,7 +38,7 @@ namespace LMS_Project.Services
             var state = db.States.Find(StateId);
             if (state != null)
             {
-                db.States.Remove(state);
+                state.IsDeleted = true;
                 db.SaveChanges();
             }
         }

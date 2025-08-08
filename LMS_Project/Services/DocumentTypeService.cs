@@ -23,7 +23,7 @@ namespace LMS_Project.Services
         }
         public List<DocumentTypeDto> FetchAllDocumentTypes()
         {
-            var data = db.DocumentTypes.ToList();
+            var data = db.DocumentTypes.Where(x => x.IsDeleted == false).ToList();
             return mapper.Map<List<DocumentTypeDto>>(data);
 
         }
@@ -38,7 +38,7 @@ namespace LMS_Project.Services
             var documentType = db.DocumentTypes.Find(documentTypeId);
             if (documentType != null)
             {
-                db.DocumentTypes.Remove(documentType);
+                documentType.IsDeleted = true;
                 db.SaveChanges();
             }
         }

@@ -23,7 +23,7 @@ namespace LMS_Project.Services
         }
         public List<BranchDto> FetchAllBranches()
         {
-            var data = db.Branches.ToList();
+            var data = db.Branches.Where(x=>x.IsDeleted==false).ToList();
             return mapper.Map<List<BranchDto>>(data);
         }
         public void UpdateBranch(EditBranchDto branchDto)
@@ -37,7 +37,7 @@ namespace LMS_Project.Services
             var branch = db.Branches.Find(branchId);
             if (branch != null)
             {
-                db.Branches.Remove(branch);
+               branch.IsDeleted = true;
                 db.SaveChanges();
             }
         }

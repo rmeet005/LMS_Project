@@ -22,7 +22,7 @@ namespace LMS_Project.Services
         }
         public List<BankDto> FetchAllBanks()
         {
-            var data = db.Banks.ToList();
+            var data = db.Banks.Where(x => x.IsDeleted == false).ToList();
             return mapper.Map<List<BankDto>>(data);
         }
         public void UpdateBank(EditBankDto bank)
@@ -36,7 +36,7 @@ namespace LMS_Project.Services
             var bank = db.Banks.Find(bankId);
             if (bank != null)
             {
-                db.Banks.Remove(bank);
+                bank.IsDeleted = true;
                 db.SaveChanges();
             }
         }
