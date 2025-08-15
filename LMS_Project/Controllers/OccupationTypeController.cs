@@ -14,12 +14,13 @@ namespace LMS_Project.Controllers
         {
             this.service = service;
         }
+
         [HttpPost]
         [Route("AddOccupationType")]
         public IActionResult AddOccupationType([FromBody] OccupationTypeDto occupationTypeDto)
         {
             service.AddOccupationType(occupationTypeDto);
-            return Ok("Occupation Type added successfully.");
+            return Ok(new { message = "Occupation Type added successfully." });
         }
         [HttpGet]
         [Route("FetchAllOccupationTypes")]

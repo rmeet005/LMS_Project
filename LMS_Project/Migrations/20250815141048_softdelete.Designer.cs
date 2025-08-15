@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LMS_Project.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250808060531_softdelete")]
+    [Migration("20250815141048_softdelete")]
     partial class softdelete
     {
         /// <inheritdoc />
@@ -169,6 +169,9 @@ namespace LMS_Project.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.HasKey("CountryId");

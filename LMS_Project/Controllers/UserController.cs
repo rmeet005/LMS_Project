@@ -21,7 +21,7 @@ namespace LMS_Project.Controllers
         public IActionResult AddUser(UserDto u)
         {
             Service.AddUser(u);
-            return Ok("User added successfully");
+            return Ok(new { message = "User added" });  
 
         }
 

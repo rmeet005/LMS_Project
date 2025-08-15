@@ -23,7 +23,8 @@ namespace LMS_Project.Controllers
             Service.AddRole(roles);
             return Ok("Role Added Succefully!!");
         }
-        [HttpPost]
+
+        [HttpGet]
         [Route("FetchAllRoles")]
         public IActionResult FetchAllRoles()
         {

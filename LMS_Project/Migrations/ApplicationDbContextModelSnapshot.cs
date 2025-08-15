@@ -168,6 +168,9 @@ namespace LMS_Project.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.HasKey("CountryId");
 
                     b.ToTable("Countries");

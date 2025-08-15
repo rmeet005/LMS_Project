@@ -27,7 +27,7 @@ namespace LMS_Project.Services
         {
             var data = db.Users.Where(x=>x.IsDeleted==false&& x.IsActive==true).ToList();
             return data;
-        }
+       }
         public void UpdateUser(EditUserDto user)
         {
             var d=mapper.Map<Users>(user);

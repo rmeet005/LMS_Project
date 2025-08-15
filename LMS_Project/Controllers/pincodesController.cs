@@ -14,6 +14,7 @@ namespace LMS_Project.Controllers
         {
             Service = service;
         }
+
         [HttpPost]
         [Route("AddPincode")]
         public IActionResult AddPincode([FromBody] PinCodesDto pincode)

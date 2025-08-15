@@ -40,7 +40,8 @@ namespace LMS_Project.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CountryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CountryCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
